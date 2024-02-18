@@ -82,4 +82,8 @@ person_list = [
     Teacher('Войтович', '05-03-1985', 'ФКСИС', 'Профессор', 10),
 ]
 
+print('полная информация о персонах:')
+for el in person_list:
+    print(el)
+
 print(*[person.surname for person in search_persons_by_age(person_list)])
