@@ -1,45 +1,45 @@
-import pickle
-import sys
+# 6. Напишите функцию, принимающую от 1 до 3 параметров целых
+# чисел (как стандартная функция range). Единственный обязательный аргумент -
+# последнее число. Если поданы 2 аргумента, то первый интерпретируется как
+# начальное число, второй, как конечное (не включительно). Если поданы 3
+# аргумента, то третий аргумент интерпретируется как шаг. Функция должна
+# выдавать один из следующих списков: квадратов чисел; кубов чисел; квадратных
+# корней чисел; логарифмов чисел.
+import math
 
 
-def find_even_elements(array):
-    even_elements = []
-    for row in array:
-        for el in row:
-            if el % 2 == 0:
-                even_elements.append(el)
-    return even_elements
+def generate_list(*args) -> list:
+    functions = {
+        'square': lambda x: x ** 2,
+        'cube': lambda x: x ** 3,
+        'square_root': lambda x: math.sqrt(x),
+        'logarithm': lambda x: math.log(x),
+    }
+
+    if len(args) == 3:
+        start, end, step = args
+
+    elif len(args) == 2:
+        start, end = args
+        step = 1
+    elif len(args) == 1:
+        end = args[0]
+        start = 0
+        step = 1
+
+    else:
+        raise ValueError("Функция должна принимать от 1 до 3 аргументов")
+
+    result = []
+    choice = input('введите одно из названий функций: square, cube, square_root, logarithm: ')
+    if choice not in functions:
+        raise KeyError("некорректно введено название функции")
+
+    for num in range(start, end, step):
+        print(num)
+        result.append(functions[choice](num))
+
+    return result
 
 
-try:
-    i, j = map(int, input('введите размеры двумерного массива: ').split())
-except ValueError:
-    print('Введите числовые данные в надлежащем фомате')
-    sys.exit()
-
-print(f"Размеры Массива: {i}, {j}")
-array = []
-for a in range(i):
-    row = []
-    for b in range(j):
-        try:
-            el = int(input('введите число: '))
-            row.append(el)
-        except ValueError:
-            print('неверный формат ввода')
-            sys.exit()
-    array.append(row)
-
-print(array)
-
-with open('data.bin', 'wb') as file:
-    pickle.dump(array, file)
-
-with open('data.bin', 'rb') as file:
-    new_arr = pickle.load(file)
-
-res = find_even_elements(new_arr)
-
-with open('result.txt', 'w') as text_file:
-    for element in res:
-        text_file.write(f'{element}\n')
+generate_list(1, 5, 1)
