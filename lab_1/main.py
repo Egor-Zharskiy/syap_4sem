@@ -36,7 +36,6 @@ def generate_list(*args) -> list:
         raise KeyError("некорректно введено название функции")
 
     for num in range(start, end, step):
-        # print(num)
         result.append(functions[choice](num))
 
     return result
