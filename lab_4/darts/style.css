@@ -1,0 +1,34 @@
+.header {
+    background-color: #333;
+    padding: 20px;
+}
+
+.img {
+    text-align: center;
+}
+
+.target-size {
+    margin-top: 10px;
+    width: 300px;
+}
+
+.ball-img {
+    width: 80px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: transform 0.5s ease, bottom 1s ease, width 0.5s ease; /* Анимации для перемещения, изменения высоты и ширины */
+}
+
+.throw-animation {
+    transform: translateY(-200px); /* Движение вверх на 100px */
+    bottom: 100px; /* Дополнительный сдвиг вверх для анимации */
+    width: 40px; /* Уменьшение ширины до 40px */
+}
+
+.footer {
+    background-color: red;
+    padding: 10px;
+    margin-top: 300px;
+    position: relative;
+}
